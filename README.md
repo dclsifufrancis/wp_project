@@ -1,5 +1,10 @@
 # wp_project
 
+<<<<<<< HEAD
+=======
+Blog personnel
+
+>>>>>>> 538cf9884323b326767870e4a2def50c76ab95ae
 Élaboration d’un blog personnel.
 
 Les apprenants doivent élaborer un blog personnel :
@@ -12,4 +17,7 @@ Contenu attendu :
 •	Le front-end doit utiliser un thème personnalisé, squelette autorisé mais pas de thème enfant.
 
 Le processus de création doit être documenté le code commenté et respecter les règles de sécurité.
+<<<<<<< HEAD
 
+=======
+>>>>>>> 538cf9884323b326767870e4a2def50c76ab95ae
