@@ -68,7 +68,11 @@ class Pages {
       return Subscriber::where('wp_user_id', $wp_user->ID)->findOne();
     }
 
-    return (Subscriber::generateToken($email) === $token) ?
+    if (!$email) {
+      return false;
+    }
+
+    return (Subscriber::verifyToken($email, $token)) ?
       Subscriber::findOne($email) :
       false;
   }
@@ -344,6 +348,17 @@ class Pages {
               'is_disabled' => true,
               'is_hidden' => (
                 $subscriber->status !== Subscriber::STATUS_BOUNCED
+              )
+            ),
+            array(
+              'value' => array(
+                Subscriber::STATUS_INACTIVE => WPFunctions::get()->__('Inactive', 'mailpoet')
+              ),
+              'is_checked' => (
+                $subscriber->status === Subscriber::STATUS_INACTIVE
+              ),
+              'is_hidden' => (
+                $subscriber->status !== Subscriber::STATUS_INACTIVE
               )
             )
           )

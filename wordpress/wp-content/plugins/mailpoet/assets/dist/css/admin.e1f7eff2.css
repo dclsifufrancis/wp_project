@@ -1390,7 +1390,9 @@ span.CodeMirror-selectedtext { background: none; }
 
 .mailpoet_listing_table thead th.column-primary, .mailpoet_listing_table tfoot th.column-primary { width: 25em; }
 
-@media screen and (max-width: 782px) { .mailpoet_listing_table thead th.column-primary, .mailpoet_listing_table tfoot th.column-primary { width: 100%; } }
+.mailpoet-segments-listing .mailpoet_listing_table thead th.column-primary, .mailpoet-segments-listing .mailpoet_listing_table tfoot th.column-primary { width: 18em; }
+
+@media screen and (max-width: 782px) { .mailpoet_listing_table thead th.column-primary, .mailpoet_listing_table tfoot th.column-primary { width: 100% !important; } }
 
 #newsletters_container h2.nav-tab-wrapper { margin-bottom: 1rem; }
 
@@ -1598,17 +1600,23 @@ input.parsley-error, select.parsley-error, textarea.parsley-error { background-c
 
 .mailpoet_progress_complete .mailpoet_progress_bar { background-color: #a4e5f4; background-image: linear-gradient(to bottom, #a4e5f4, #6bd3eb); }
 
-.mailpoet_stepped_progress_bar { margin: auto; width: 400px; }
+.mailpoet_stepped_progress_bar { display: flex; max-width: 100%; width: 350px; }
 
-.mailpoet_stepped_progress_bar:before { background-color: #d8d8d8; border-radius: 2px; content: ""; display: block; height: 2px; margin: auto; position: relative; top: 9px; width: 100%; }
+.mailpoet_stepped_progress_bar_step { flex-grow: 1; }
 
-.mailpoet_stepped_progress_bar_step { display: inline-block; }
+.mailpoet_stepped_progress_bar_step:before { background-color: #f1f1f1; border: 2px solid #dbdbdb; border-radius: 14px; content: ''; display: block; height: 12px; position: relative; width: 12px; z-index: 1; }
 
-.mailpoet_stepped_progress_bar_step:before { background-color: #d8d8d8; border-radius: 14px; content: ""; display: block; height: 14px; margin: auto; position: relative; width: 14px; }
+.mailpoet_stepped_progress_bar_step:after { background-color: #dbdbdb; content: ''; display: block; height: 4px; left: 4px; position: relative; top: -10px; width: 100%; }
 
-.mailpoet_stepped_progress_bar_step.active:before { background-color: #979797; }
+.mailpoet_stepped_progress_bar_step:last-of-type { flex-grow: 0; width: 18px; }
 
-@media screen and (max-width: 520px) { .mailpoet_stepped_progress_bar { width: 360px; } }
+.mailpoet_stepped_progress_bar_step:last-of-type:after { display: none; }
+
+.mailpoet_stepped_progress_bar_step.active:before, .mailpoet_stepped_progress_bar_step.active:after { background-color: #23282d; border-color: #23282d; }
+
+.mailpoet_stepped_progress_bar_step.current:before { background-color: #fff; }
+
+.mailpoet_stepped_progress_bar_step.current:after { background-color: #dbdbdb; }
 
 #subscribers_container .mailpoet_segments_unsubscribed { color: darkgray; }
 
@@ -1870,53 +1878,51 @@ Custom styles for MailPoet pages.
 
 .mailpoet_template_iframe { left: 0; max-width: 660px; position: absolute; top: 0; width: 660px; z-index: -9999; }
 
-.mailpoet_welcome_wizard_centered_column { align-items: center; display: flex; flex-direction: column; justify-content: center; }
-
-.mailpoet_welcome_wizard_header img { margin-bottom: 20px; }
+.mailpoet_welcome_wizard_header { text-align: center; }
 
 .mailpoet_welcome_wizard_steps { padding-top: 20px; width: 100%; }
 
 .mailpoet_welcome_wizard_steps div.updated, .mailpoet_welcome_wizard_steps div.error, .mailpoet_welcome_wizard_steps .notice { display: none !important; }
 
+.mailpoet_welcome_wizard_flex { display: flex; }
+
+.mailpoet_welcome_wizard_illustration { flex-grow: 1; height: 400px; padding: 60px 40px 40px 60px; text-align: right; width: 50%; }
+
+.mailpoet_welcome_wizard_illustration img { max-height: 100%; max-width: 100%; }
+
+@media screen and (max-width: 782px) { .mailpoet_welcome_wizard_illustration { display: none; } }
+
+.mailpoet_welcome_wizard_step { flex-grow: 1; padding: 60px 60px 40px 40px; text-align: left; width: 50%; }
+
+@media screen and (max-width: 782px) { .mailpoet_welcome_wizard_step { padding: 30px; width: 100%; } }
+
 .mailpoet_welcome_wizard_step_content { margin-top: 40px; max-width: 620px; min-height: 30vh; }
 
-.mailpoet_welcome_wizard_step_content h1 { font-weight: 400; padding-bottom: 10px; text-align: center; }
+.mailpoet_welcome_wizard_step_content h1 { font-weight: 700; margin: 0 0 20px; padding: 0; }
 
-.mailpoet_welcome_wizard_step_content p { color: #595c65; font-size: 15px; font-weight: normal; line-height: 22px; margin: 10px 0; text-align: center; }
+.mailpoet_welcome_wizard_step_content p { color: #595c65; font-size: 15px; font-weight: normal; line-height: 22px; margin: 0 0 40px; }
+
+.mailpoet_welcome_wizard_step_content p + p { margin-top: -20px; }
 
 .mailpoet_welcome_wizard_step_content .welcome_wizard_tracking_sub_title { margin-bottom: 0; }
 
-.mailpoet_welcome_wizard_step_content .welcome_wizard_tracking_list { list-style: disc; }
+.mailpoet_welcome_wizard_step_content .welcome_wizard_tracking_list { list-style: disc; padding-left: 30px; }
 
 #mailpoet_sender_form { margin-top: 30px; width: 330px; }
 
-#mailpoet_sender_form label { display: inline-block; font-size: 15px; margin-bottom: 20px; }
+#mailpoet_sender_form label { display: block; font-size: 15px; margin-bottom: 20px; }
 
-#mailpoet_sender_form input[type="text"] { font-size: 15px; height: 30px; margin-top: 10px; width: 328px; }
-
-#mailpoet_sender_form input[type="submit"] { margin: 50px 0 25px 0; }
+#mailpoet_sender_form input[type="text"] { font-size: 15px; height: 30px; margin-top: 10px; width: 350px; }
 
 #mailpoet_sender_form a.sender_form_small { color: #595c65; font-size: 12px; }
 
 .mailpoet_sender_form_loading { opacity: 0.5; }
 
-.mailpoet_welcome_wizard_course_form_box { margin-bottom: 10px; padding-top: 30px; position: relative; }
+.mailpoet_welcome_wizard_step_controls { margin: 40px 0 10px; }
 
-.mailpoet_welcome_wizard_course_form_box img { left: 0; position: absolute; top: 0; }
+.mailpoet_welcome_wizard_step_controls .button + .button { margin-left: 20px; }
 
-.mailpoet_welcome_wizard_course_form_box iframe { margin-left: 155px; }
-
-@media screen and (max-width: 520px) { .mailpoet_welcome_wizard_course_form_box { padding: 0 10px; text-align: center; }
-  .mailpoet_welcome_wizard_course_form_box iframe { margin-left: 0; }
-  .mailpoet_welcome_wizard_course_form_box img { position: static; } }
-
-.mailpoet_welcome_wizard_step_controls { margin-top: 50px; }
-
-.mailpoet_welcome_wizard_step_controls .button { margin: 0 10px; }
-
-.mailpoet_welcome_wizard_woo_screenshot { margin-top: 30px; width: 400px; }
-
-@media screen and (max-width: 520px) { .mailpoet_welcome_wizard_woo_screenshot { width: 340px; } }
+.mailpoet_welcome_wizard_woo_screenshot { box-shadow: 2px 3px 18px rgba(0, 0, 0, 0.3); margin-top: -20px; max-width: 100%; width: 350px; }
 
 .welcome_wizard_video { position: absolute; top: -1000px; }
 

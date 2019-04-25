@@ -623,7 +623,7 @@ class Menu {
 
     $date_time = new DateTime();
     $data['current_date'] = $date_time->getCurrentDate(DateTime::DEFAULT_DATE_FORMAT);
-    $data['current_time'] = $date_time->getCurrentTime();
+    $data['current_time_zone'] = (new Carbon())->getTimezone()->getName();
     $data['schedule_time_of_day'] = $date_time->getTimeInterval(
       '00:00:00',
       '+1 hour',
@@ -661,16 +661,6 @@ class Menu {
             'badge' => array(
               'text' => WPFunctions::get()->__('Must-have', 'mailpoet'),
               'style' => 'red'
-            )
-          ),
-          array(
-            'slug' => 'woocommerce_big_spender',
-            'title' => WPFunctions::get()->__('Big Spender', 'mailpoet'),
-            'description' => WPFunctions::get()->__('Let MailPoet send an email to customers who have spent a certain amount to thank them, possibly with a coupon.', 'mailpoet'),
-            'soon' => true,
-            'badge' => array(
-              'text' => WPFunctions::get()->__('Smart to have', 'mailpoet'),
-              'style' => 'teal'
             )
           ),
           array(
