@@ -287,7 +287,7 @@ class __TwigTemplate_a018ae199e4c0dddac44620cc291465843bff0db55132fa13802161b42a
       </td>
     </tr>
     <!-- inactive subscribers -->
-    <tr style=\"display:none\">
+    <tr>
       <th scope=\"row\">
         <label>
           ";
@@ -652,7 +652,7 @@ class __TwigTemplate_a018ae199e4c0dddac44620cc291465843bff0db55132fa13802161b42a
 <script type=\"text/javascript\">
   jQuery(function(\$) {
     \$(function() {
-      \$('input[name=\"tracking[enabled]\"').on('change', function() {
+      \$('input[name=\"tracking[enabled]\"]').on('change', function() {
         var trackingEnabled = \$(this).val();
         if (trackingEnabled) {
           \$('.mailpoet_inactive_subscribers_enabled').removeClass('mailpoet_hidden');
